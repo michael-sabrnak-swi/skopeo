@@ -262,6 +262,7 @@ func (opts *copyOptions) run(args []string, stdout io.Writer) (retErr error) {
 
 	return retry.IfNecessary(ctx, func() error {
 		manifestBytes, err := copy.Image(ctx, policyContext, destRef, srcRef, &copy.Options{
+			DownloadForeignLayers:            true,
 			RemoveSignatures:                 opts.removeSignatures,
 			SignBy:                           opts.signByFingerprint,
 			SignPassphrase:                   passphrase,
